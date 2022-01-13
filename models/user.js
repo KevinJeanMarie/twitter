@@ -1,6 +1,6 @@
-const mongoose = require("mongoose")
+const {Schema, model }= require("mongoose")
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     firstName: {
         type: String
     },
@@ -33,11 +33,27 @@ const userSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
-    }
+    },
+    tweets: [{
+        type: Schema.Types.ObjectId,
+        ref: "Tweet"
+    }],
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
+    }],
+    followers: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    followings: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }]
 }, {
       timestamps: true
     })
     
-    const User = mongoose.model('User', userSchema)
+    const User = model('User', userSchema)
     
-    module.exports = User
+module.exports = User
