@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 
-const User = require("../models/user")
+const User = require("../models/User")
 
 app.post('/', async (req, res)=>{
 
