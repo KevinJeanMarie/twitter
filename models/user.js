@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const {Schema, model} = require("mongoose")
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
+    },
+    tweets:{
+        type: Schema.Types.ObjectId,
+        ref: "Tweet"
     }
 }, {
       timestamps: true
