@@ -1,7 +1,12 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.2",
-    "mongoose": "^6.1.6"
+    "express-session": "^1.17.2",
+    "moment": "^2.29.1",
+    "mongoose": "^6.1.6",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
   },
   "name": "twitter-backend",
   "description": "\"# twitter\"",
