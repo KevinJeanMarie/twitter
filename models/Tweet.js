@@ -12,11 +12,11 @@ const tweetSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Users"
     },
     comments: [{
-        Types: Schema.Types.ObjectId,
-        ref: "Comment"
+        type: Schema.Types.ObjectId,
+        ref: "Comments"
     }],
 }, {
       timestamps: true
