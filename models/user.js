@@ -33,9 +33,15 @@ const userSchema = new Schema({
     bio: {
         type: String,
     },
+    profile_picture: {
+        type: String,
+    },
     tweets: [{
-        type: Schema.Types.ObjectId,
-        ref: "Tweet"
+        publicAt : Date,
+        tweet : { 
+            type: Schema.Types.ObjectId,
+            ref:'Tweet'
+        }
     }],
     comments: [{
         type: Schema.Types.ObjectId,

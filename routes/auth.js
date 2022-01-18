@@ -18,35 +18,33 @@ app.post('/login', passport.authenticate("local"), (req, res) => {
 app.post('/signup', async (req, res)  => {
 
   const { email } = req.body
-
+  
   try{
     const user = await User.findOne({email: email})
-
+    
     if (user){
-        res.status(409).json({ error: 'User already exists' })
+       res.status(409).json({ error: 'User already exists' })
     }else {
-        const user = await new User({ 
-            ...req.body, 
-            birthday: new Date(req.body.birthday)
-        })
+      const user = await new User({ 
+        ...req.body, 
+        birthday: new Date(req.body.birthday)
+      })
         
-        user.save((err, user) => {
-            if (user) {
-              res.json(user)
-              return
-            }
-      
-            console.log(err)
-            res.status(500).json({ error: err })
-          })
+      user.save((err, user) => {
+        if (user) {
+          res.json(user)
+          return
         }
+    
+        console.log(err)
+        res.status(500).json({ error: err })
+      })
+    }
 
   }catch(error) {
     console.log(err)
     res.status(500).json({ error: err })
-}
+  }
 })
-
-
 
 module.exports = app

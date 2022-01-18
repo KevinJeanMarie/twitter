@@ -8,7 +8,8 @@ const tweetSchema = new Schema({
         type: Date
     },
     nbRetweets: {
-        type: Number
+        type: Number,
+        default: 0
     },
     user: {
         type: Schema.Types.ObjectId,

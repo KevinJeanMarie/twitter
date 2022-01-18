@@ -8,6 +8,7 @@ const usersRoutes = require("./routes/users")
 const commentsRoutes = require("./routes/comments")
 const tweetsRoutes = require("./routes/tweets")
 const authRoutes = require("./routes/auth")
+const filesRoutes = require("./routes/files")
 const passport = require("./config/passport")
 
 app.use(session({
@@ -29,7 +30,7 @@ app.use('/users', usersRoutes)
 app.use('/comments', commentsRoutes)
 app.use('/tweets', tweetsRoutes)
 app.use('/auth', authRoutes)
-
+app.use('/files', filesRoutes)
 
 
 app.listen(port,() => {
