@@ -27,7 +27,7 @@ app.post('/signup', async (req, res)  => {
     }else {
       const user = await new User({ 
         ...req.body, 
-        birthday: new Date(req.body.birthday)
+    
       })
         
       user.save((err, user) => {

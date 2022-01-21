@@ -17,9 +17,11 @@ app.use(session({
     saveUninitialized: false 
   }))
 app.use(cors({
-    origin: "http://localhost:5000",
+    origin: true,
     credentials: true
 }))
+
+
 
 app.use(passport.initialize())
 app.use(passport.session())

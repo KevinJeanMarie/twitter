@@ -20,6 +20,21 @@ app.get('/:id', verifyUser, async (req, res) => {
   }
 })
 
+app.get('/', verifyUser, async (req, res) => {
+ 
+console.log("hello",req.user)
+  try {
+    const user = req.user
+      // .populate('tweets', 'contents date')
+      // .exec()
+
+    res.json(user)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: err })
+  }
+})
+
 app.get('/:id/followers', verifyUser, async (req, res) => {
   const { id } = req.params
 
@@ -50,18 +65,18 @@ app.get('/:id/followings', verifyUser, async (req, res) => {
   }
 })
 
-app.get('/', async (req, res) => {
+// app.get('/', async (req, res) => {
 
-  try {
-    const users = await User.find()
-    console.log(users)
+//   try {
+//     const users = await User.find()
+//     console.log(users)
 
-    res.json(users)
-  } catch (err) {
-    console.log(err)
-    res.status(500).json({ error: err })
-  }
-})
+//     res.json(users)
+//   } catch (err) {
+//     console.log(err)
+//     res.status(500).json({ error: err })
+//   }
+// })
 
 app.put('/:id', async (req, res)=>{
   const { id } = req.params

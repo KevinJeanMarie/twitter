@@ -5,21 +5,21 @@ const { verifyUser } = require("../middlewares/auth")
 const Tweet = require("../models/Tweet")
 const User = require("../models/User")
 
-app.post('/:id', verifyUser, async (req, res)=>{
-    const { id } = req.params
+app.post('/', verifyUser, async (req, res)=>{
+    console.log(req.user)
 
+    console.log(req)
     try{
         const tweet = await new Tweet({
             ...req.body,
             date: new Date(),
-            user: id
+            user: req.user._id
         })
-
+        
         tweet.save(async (err, tweet) => {
             if (tweet){
-                const getUser = await User.findById(id)
-                getUser.tweets.push(tweet._id)
-                getUser.save()
+                req.user.tweets.push(tweet._id)
+                req.user.save()
 
                 res.json(tweet)
                 return
@@ -33,12 +33,14 @@ app.post('/:id', verifyUser, async (req, res)=>{
     }
 })
 
-app.get('/:id', async (req,res)=>{
+app.get('/', verifyUser, async (req,res)=>{
     const { id } = req.params
 
     try{
-        const tweet = await Tweet.findById(id)
-
+        
+        const tweets= req.user.tweets
+        const tweet = await Tweet.findById(tweets)
+        console.log(tweet)
         res.json(tweet)
     } catch  (err){
         res.status(500).json({error: err})
@@ -72,18 +74,18 @@ app.post('/:idUser/:idTweet', verifyUser, async (req, res) => {
     }
 })
 
-app.get('/',  async (req, res) => {
+// app.get('/',  async (req, res) => {
 
-    try {
-      const tweet = await Tweet.find()
-        .populate('contents', '')
-        .exec()
+//     try {
+//       const tweet = await Tweet.find()
+//         .populate('contents', '')
+//         .exec()
   
-      res.json(tweet)
-    } catch (err) {
-      console.log(err)
-      res.status(500).json({ error: err })
-    }
-  })
+//       res.json(tweet)
+//     } catch (err) {
+//       console.log(err)
+//       res.status(500).json({ error: err })
+//     }
+//   })
 
 module.exports = app
