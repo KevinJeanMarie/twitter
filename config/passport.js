@@ -9,7 +9,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, async (username, pass
     console.log("username",username)
     console.log("password",password)
     
-    const user = await User.findOne({email: username, password: password})
+    const user = await User.findOne({email: username, password: password}).exec()
     
     if (!user) {
         return done(null, false)
@@ -23,11 +23,8 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async(id, done) => {
 
-    const user = await User.findById(id).exec
+    const user = await User.findById(id).exec()
 
-    if (!user) {
-        return done(null, false)
-    }
     return done(null, user)
 })
 

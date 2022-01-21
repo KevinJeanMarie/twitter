@@ -3,6 +3,7 @@ const app = express()
 
 const Comment = require("../models/Comment")
 const Tweet = require("../models/Tweet")
+<<<<<<< HEAD
 
 app.post('/:id', async (req, res)=>{
     const { id } = req.params
@@ -32,6 +33,8 @@ app.post('/:id', async (req, res)=>{
         res.status(500).json({ error: err })
     }
 })
+=======
+>>>>>>> 1d2d2092514c7b85714c90705b2bfb53d56dadab
 
 
 
