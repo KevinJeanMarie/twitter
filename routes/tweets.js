@@ -5,35 +5,6 @@ const { verifyUser } = require("../middlewares/auth")
 const Tweet = require("../models/Tweet")
 const User = require("../models/User")
 
-<<<<<<< HEAD
-app.post('/', async (req, res)=>{
-    console.log(req.user)
-
-    // try{
-    //     const tweet = await new Tweet({
-    //         ...req.body,
-    //         date: new Date(),
-    //         user: id
-    //     })
-
-    //     tweet.save(async (err, tweet) => {
-    //         if (tweet){
-    //             const getUser = await User.findById( id)
-    //             getUser.tweets.push(tweet._id)
-    //             getUser.save()
-    //             // console.log("getuser", getUser)
-
-    //             res.json(tweet)
-    //             return
-    //         }
-    //         console.log(err)
-    //         res.status(500).json({ error: err })
-    //     })
-    // }catch (err) {
-    //     console.log(err)
-    //     res.status(500).json({ error: err })
-    // }
-=======
 app.post('/', verifyUser, async (req, res)=>{
     console.log(req.user)
 
@@ -60,7 +31,6 @@ app.post('/', verifyUser, async (req, res)=>{
         console.log(err)
         res.status(500).json({ error: err })
     }
->>>>>>> 1d2d2092514c7b85714c90705b2bfb53d56dadab
 })
 
 app.get('/', verifyUser, async (req,res)=>{
@@ -77,14 +47,6 @@ app.get('/', verifyUser, async (req,res)=>{
     }
 })
 
-<<<<<<< HEAD
-app.post ('/:id', async (req, res) => {
-    const { id } = req.params
-
-    
-
-} )
-=======
 app.post('/:idUser/:idTweet', verifyUser, async (req, res) => {
     const { idUser, idTweet } = req.params
 
@@ -125,6 +87,5 @@ app.post('/:idUser/:idTweet', verifyUser, async (req, res) => {
 //       res.status(500).json({ error: err })
 //     }
 //   })
->>>>>>> 1d2d2092514c7b85714c90705b2bfb53d56dadab
 
 module.exports = app
