@@ -78,12 +78,12 @@ app.get('/:id/followings', verifyUser, async (req, res) => {
 //   }
 // })
 
-app.put('/:id', async (req, res)=>{
-  const { id } = req.params
+app.put('/', async (req, res)=>{
+  // const { id } = req.params
 
   try {
     const user = await User.findOneAndUpdate(
-      { _id: id },
+      { _id: req.user._id },
       { ...req.body },
       { new : true}
     ).exec()

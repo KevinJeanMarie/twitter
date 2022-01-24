@@ -1,4 +1,5 @@
 const {Schema, model }= require("mongoose")
+const moment = require('moment');
 
 const userSchema = new Schema({
     firstName: {
@@ -25,7 +26,7 @@ const userSchema = new Schema({
         type : String,
     },
     birthday: {
-        type: Date,
+        type: String,
     },
     sexe: {
         type: String,

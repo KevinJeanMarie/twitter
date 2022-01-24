@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const passport = require("../config/passport")
 const User = require("../models/User")
+const moment = require('moment');
 
 app.post('/login', passport.authenticate("local"), (req, res) => {
   if (req.user) {
@@ -27,7 +28,7 @@ app.post('/signup', async (req, res)  => {
     }else {
       const user = await new User({ 
         ...req.body, 
-    
+        birthday: moment(req.body.birthday).format("DD-MM-YYYY")
       })
         
       user.save((err, user) => {

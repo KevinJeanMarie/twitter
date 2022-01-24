@@ -6,9 +6,7 @@ const Tweet = require("../models/Tweet")
 const User = require("../models/User")
 
 app.post('/', verifyUser, async (req, res)=>{
-    console.log(req.user)
 
-    console.log(req)
     try{
         const tweet = await new Tweet({
             ...req.body,
@@ -22,10 +20,7 @@ app.post('/', verifyUser, async (req, res)=>{
                 req.user.save()
 
                 res.json(tweet)
-                return
             }
-            console.log(err)
-            res.status(500).json({ error: err })
         })
     }catch (err) {
         console.log(err)
